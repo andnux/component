@@ -57,24 +57,24 @@ public abstract class UpPay implements Pay {
                     } catch (JSONException e) {
                         e.printStackTrace();
                         if (mPayListener != null) {
-                            mPayListener.success(msg);
+                            mPayListener.onFailure(msg);
                         }
                     }
                 }
                 // 结果result_data为成功时，去商户后台查询一下再展示成功
                 msg = "支付成功！";
                 if (mPayListener != null) {
-                    mPayListener.success(msg);
+                    mPayListener.onSuccess(msg);
                 }
             } else if ("fail".equalsIgnoreCase(str)) {
                 msg = "支付失败！";
                 if (mPayListener != null) {
-                    mPayListener.failure(msg);
+                    mPayListener.onFailure(msg);
                 }
             } else if ("cancel".equalsIgnoreCase(str)) {
                 msg = "用户取消了支付";
                 if (mPayListener != null) {
-                    mPayListener.failure(msg);
+                    mPayListener.onCancel(msg);
                 }
             }
         }

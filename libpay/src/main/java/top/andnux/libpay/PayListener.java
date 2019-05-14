@@ -2,7 +2,9 @@ package top.andnux.libpay;
 
 public interface PayListener {
 
-    void success(String ... message);
+    void onSuccess(String ... message);
 
-    void failure(String ... message);
+    void onFailure(String ... message);
+
+    void onCancel(String ... message);
 }

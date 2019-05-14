@@ -15,7 +15,6 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import java.lang.ref.WeakReference;
 import java.util.Map;
 
-import top.andnux.libpay.PayConfig;
 import top.andnux.libpay.PayListener;
 
 public class WxManager implements IWXAPIEventHandler {
@@ -43,10 +42,7 @@ public class WxManager implements IWXAPIEventHandler {
     }
 
     private WxManager() {
-        Map<String, String> config = PayConfig.getWxConfig();
-        String id = config.get("id");
-        api = WXAPIFactory.createWXAPI(getApplication(), id);
-        api.registerApp(id);
+
     }
 
     public IWXAPI getApi() {
@@ -80,11 +76,15 @@ public class WxManager implements IWXAPIEventHandler {
             PayResp resps = (PayResp) resp;
             if (resp.errCode == 0) {   //付款成功
                 if (mListener != null) {
-                    mListener.success(resps.extData);
+                    mListener.onSuccess(resps.extData);
                 }
-            } else {                //付款失败
+            } else if (resp.errCode == -1) {    //错误
                 if (mListener != null) {
-                    mListener.failure();
+                    mListener.onFailure(resps.errStr);
+                }
+            } else if (resp.errCode == -2){     //取消
+                if (mListener != null) {
+                    mListener.onCancel();
                 }
             }
             Activity activity = mReference.get();
@@ -92,5 +92,10 @@ public class WxManager implements IWXAPIEventHandler {
                 activity.finish();
             }
         }
+    }
+
+    public void init(String appId, String secretKey) {
+        api = WXAPIFactory.createWXAPI(getApplication(), appId);
+        api.registerApp(appId);
     }
 }

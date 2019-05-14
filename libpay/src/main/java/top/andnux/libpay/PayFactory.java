@@ -6,8 +6,8 @@ import top.andnux.libpay.wxpay.WxPay;
 
 public class PayFactory {
 
-    public static Pay getWxPay() {
-        return new WxPay();
+    public static Pay getWxPay(String appId, String secretKey) {
+        return new WxPay(appId,secretKey);
     }
 
     public static Pay getAliPay() {
