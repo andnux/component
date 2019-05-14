@@ -29,17 +29,19 @@ public class AliPay implements Pay {
                     PayResult payResult = new PayResult((Map<String, String>) msg.obj);
                     String resultInfo = payResult.getResult();// 同步返回需要验证的信息
                     String resultStatus = payResult.getResultStatus();
-                    // 判断resultStatus 为9000则代表支付成功
-                    if (TextUtils.equals(resultStatus, "9000")) {
-                        // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-                        if (mPayListener != null) {
-                            mPayListener.onSuccess();
-                        }
-                    } else {
-                        // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
-                        if (mPayListener != null) {
-                            mPayListener.onFailure();
-                        }
+                    if(mPayListener == null) {
+                        return;
+                    }
+                    if(TextUtils.equals(resultStatus, "9000")) {    //支付成功
+                        mPayListener.onSuccess("支付成功");
+                    } else if(TextUtils.equals(resultStatus, "8000")) { //等待支付结果确认
+                        mPayListener.onFailure("等待支付结果确认");
+                    } else if(TextUtils.equals(resultStatus, "6001")) {		//支付取消
+                        mPayListener.onCancel("支付取消");
+                    } else if(TextUtils.equals(resultStatus, "6002")) {     //网络连接出错
+                        mPayListener.onFailure("网络连接出错");
+                    } else if(TextUtils.equals(resultStatus, "4000")) {        //支付错误
+                        mPayListener.onFailure("支付错误");
                     }
                 }
                 default:
