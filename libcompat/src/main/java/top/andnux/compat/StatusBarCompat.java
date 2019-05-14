@@ -14,8 +14,8 @@ public class StatusBarCompat {
     private StatusBarCompat(Activity activity) {
         mReference = new WeakReference<>(activity);
     }
-    //沉浸式全屏模式
 
+    //沉浸式全屏模式
     public static StatusBarCompat with(Activity activity) {
         return new StatusBarCompat(activity);
     }

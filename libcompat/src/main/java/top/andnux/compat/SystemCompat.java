@@ -7,8 +7,9 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 
-public class SystemSupport {
+public class SystemCompat {
 
     /**
      * 获取应用程序名称

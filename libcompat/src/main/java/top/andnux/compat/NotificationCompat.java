@@ -72,7 +72,7 @@ public class NotificationCompat {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private NotificationChannel makeDefaultNotificationChannel() {
         Context context = mContextReference.get();
-        String appName = SystemSupport.getAppName(context);
+        String appName = SystemCompat.getAppName(context);
         NotificationChannel channel = new NotificationChannel(CHANNEL_ID, appName,
                 NotificationManager.IMPORTANCE_DEFAULT);
         channel.enableVibration(true);

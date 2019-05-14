@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal"
+            android:id="@+id/titleBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp44">
+
+        <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+            <ImageView
+                    android:tint="@color/white"
+                    android:layout_margin="@dimen/dp10"
+                    android:id="@+id/back"
+                    android:src="@drawable/ic_back"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+
+            <ImageView
+                    android:tint="@color/white"
+                    android:id="@+id/close"
+                    android:src="@drawable/ic_close"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+            <TextView
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:gravity="center_vertical|right"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+            <ImageView
+                    android:tint="@color/white"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:id="@+id/more"
+                    android:src="@drawable/ic_more"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+</LinearLayout>

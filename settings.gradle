@@ -1,1 +1,1 @@
-include ':app', ':libcompat', ':libpay'
+include ':app', ':libcompat', ':libpay', ':libbase'

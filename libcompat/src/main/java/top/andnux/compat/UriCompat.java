@@ -34,6 +34,12 @@ public class UriCompat {
         return Uri.parse(uriString);
     }
 
+    public static Uri fromFile(Context context, String file) {
+        Uri uri = null;
+        File apkFile = new File(file);
+        return fromFile(context,apkFile);
+    }
+
     public static Uri fromFile(Context context, File file) {
         Uri uri = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

@@ -1,11 +1,14 @@
 package top.andnux.compat;
 
+import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.provider.Settings;
 
 import java.lang.ref.WeakReference;
 
@@ -19,6 +22,29 @@ public class PhotoCompat {
 
     public static PhotoCompat with(Context context) {
         return new PhotoCompat(context);
+    }
+
+    /**
+     * 打开相册
+     */
+    public void openAlbum() {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        Activity context = (Activity) mWeakReference.get();
+        context.startActivityForResult(intent, 1);
+    }
+
+    /**
+     * 打开设置界面
+     */
+    public void openSetting() {
+        Activity context = (Activity) mWeakReference.get();
+        Intent intent = new Intent();
+        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        intent.setData(Uri.fromParts("package", context.getPackageName(),
+                null));
+        context.startActivity(intent);
     }
 
     public String getUriPath(Uri uri) {

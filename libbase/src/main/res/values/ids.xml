@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="container"/>
+    <item type="color" name="colorPrimary"/>
+    <item type="color" name="colorPrimaryDark"/>
+    <item type="color" name="colorAccent"/>
+    <!--<item type="color" name="colorNavTitle"/>-->
+    <!--<item type="dimen" name="dimenNavTitle"/>-->
+    <!--<item type="color" name="colorNavBackground"/>-->
+    <!--<item type="color" name="colorNavSecond"/>-->
+</resources>
